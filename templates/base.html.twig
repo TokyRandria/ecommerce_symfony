@@ -5,15 +5,21 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+		<!-- Feuilles de styles -->
+        {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/styles/styles_v1.css') }}">
+
+		<!-- Fichiers JS -->
+		{% block javascripts %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src="{{ asset('assets/javascripts/scripts_v1.js') }}" defer></script>
+
     </head>
     <body>
+        {% include "_dispositions/_header.html.twig" %}
+        {% include "_dispositions/_menu.html.twig" %}
         {% block body %}{% endblock %}
     </body>
 </html>
