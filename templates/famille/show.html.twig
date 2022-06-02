@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Famille{% endblock %}
+
+{% block body %}
+    <h1>Famille</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ famille.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ famille.Libelle }}</td>
+            </tr>
+            <tr>
+                <th>Image_rep</th>
+                <td>{{ famille.imageRep }}</td>
+            </tr>
+            <tr>
+                <th>Ordre_affichage</th>
+                <td>{{ famille.ordreAffichage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_famille_index') }}">back to list</a>
+
+    <a href="{{ path('app_famille_edit', {'id': famille.id}) }}">edit</a>
+
+    {{ include('famille/_delete_form.html.twig') }}
+{% endblock %}

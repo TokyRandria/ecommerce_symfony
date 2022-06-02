@@ -144,7 +144,7 @@ body{
 }
 
 
-form {
+.logform {
   width: 450px;
   min-height: 500px;
   height: auto;
@@ -155,7 +155,7 @@ form {
   background-image: linear-gradient(-225deg, #615959 50%, #e0533a 50%);
 }
 /* form Container */
-form .con {
+.logform .con {
   display: -webkit-flex;
   display: flex;
 
