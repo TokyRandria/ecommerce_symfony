@@ -23,6 +23,8 @@ class ProduitFixtures extends Fixture
             //On va chercher une référence de catégorie
             $famille = $this->getReference('cat-'. rand(1, 8));
             $produit->setFamille($famille);
+            $taxe = $this->getReference('ta-'. rand(1, 8));
+            $produit->setTaxe($famille);
 
 
             $this->setReference('prod-'.$prod, $produit);

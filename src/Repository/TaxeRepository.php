@@ -29,6 +29,13 @@ class TaxeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+   /*  public function new(): Taxe
+    {
+        $taxe = new Taxe();
+        $taux = $this->getEntityManager();
+        $taxe->setTauxTaxe($taux);
+        return $taxe;
+    } */
 
     public function remove(Taxe $entity, bool $flush = false): void
     {

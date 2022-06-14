@@ -9,10 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\ImageUploader;
+use App\Service\ContainerParametersHelper;
 
 #[Route('/famille')]
 class FamilleController extends AbstractController
 {
+
+
     #[Route('/', name: 'app_famille_index', methods: ['GET'])]
     public function index(FamilleRepository $familleRepository): Response
     {
@@ -21,14 +25,38 @@ class FamilleController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/new', name: 'app_famille_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FamilleRepository $familleRepository): Response
+    public function new(Request $request, FamilleRepository $familleRepository,ImageUploader $img_uploader,ContainerParametersHelper $pathHelpers): Response
     {
         $famille = new Famille();
         $form = $this->createForm(FamilleType::class, $famille);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image=$form['image_rep']->getData();
+            if ($image)
+            {
+                $image_name=$img_uploader->imgCharge($image);
+                if (null !== $image_name) // for example
+                {
+                $directory = $img_uploader->getTargetDirectory();
+                dd($directory);
+                dump($directory);
+                $directory = $pathHelpers->getApplicationRootDir();
+                dump($directory);
+                dd($directory);
+                $full_path = $directory.'/'.$image_name;
+
+                // Do what you want with the full path file...
+                $famille->setImageRep($full_path);
+                }
+                else
+                {
+                // Oups, an error occured !!!
+                }
+            }
             $familleRepository->add($famille, true);
 
             return $this->redirectToRoute('app_famille_index', [], Response::HTTP_SEE_OTHER);

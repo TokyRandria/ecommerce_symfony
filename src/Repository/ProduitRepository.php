@@ -39,6 +39,16 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
+    public function new(): Produit
+    {
+        $produit = new Produit();
+        $taxe = $this->getEntityManager()->find(Taxe::class,1);
+        $produit->setTaxe($taxe);
+        #famille
+        return $produit;
+    }
+
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

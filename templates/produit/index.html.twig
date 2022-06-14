@@ -4,4 +4,46 @@
 
 {% block body %}
      <h1>Liste des produits</h1>
+
+ <h1>Produit</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+               <th> {}
+                <th>Id</th>
+                <th>reference</th>
+                <th>Libelle</th>
+                <th>Ordre_affichage</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <div class="container-primaire">
+        {% for produit in produits %}
+          {#  {% if produit.parent == null %}   #}
+        
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.Libelle }}</td>
+                <td>{{ produit.imageRep }}</td>
+                <td>{{ produit.ordreAffichage }}</td>
+                <td>
+                    <a href="#">show</a>
+                    <a href="#">edit</a>
+                </td>
+            </tr>
+            
+
+
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+      </div>
+        </tbody>
+    </table>
+
 {% endblock %}

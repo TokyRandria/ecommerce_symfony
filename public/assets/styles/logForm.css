@@ -1,0 +1,86 @@
+#eye {
+    background: #fff;
+    color: #333;  
+    cursor: pointer;
+  }
+  input[class="form-control"]{
+    width: 240px;
+    height: 50px;
+  
+    margin-top: 2%;
+    padding: 15px;
+    
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+    color: #5E6472;
+  
+    outline: none;
+    border: none;
+  
+    border-radius: 0px 5px 5px 0px;
+    transition: 0.2s linear;
+    
+  }
+  button {
+    display: inline-block;
+    color: #252537;
+  
+    width: 280px;
+    height: 50px;
+  
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 5px;
+    
+    outline: none;
+    border: none;
+  
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s linear;
+    
+    margin: 7% auto;
+    letter-spacing: 0.05em;
+  }
+  
+  button:hover {
+    transform: translatey(3px);
+    box-shadow: none;
+  }
+  
+  /* buttons hover Animation */
+  button:hover {
+    animation: ani9 0.4s ease-in-out infinite alternate;
+  }
+  @keyframes ani9 {
+    0% {
+        transform: translateY(3px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+  }
+
+  .logform {
+  width: 450px;
+  min-height: 500px;
+  height: auto;
+  border-radius: 5px;
+  margin: 2% auto;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+  padding: 2%;
+  background-image: linear-gradient(-225deg, #615959 50%, #e0533a 50%);
+}
+/* form Container */
+.logform .con {
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+    margin: 0 auto;
+}

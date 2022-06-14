@@ -41,19 +41,23 @@
         {% endfor %}
 
 
-        <h3> test card 2 </h3>
-           
+        <h3> test card 2 </h3> 
         <div class="famillezone">
         {% for famille in familles %}
                     <div class="famillecard">
                         <div class="box">
                             <div class="content">
-                            <h2>01</h2>
-                            <h3>{{ famille.Libelle }} </h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
-                            <a href="#">Read More</a>
+                                <h3>{{ famille.Libelle }} </h3>
+                                <div class="familleimage">
+                                    <a href="{{ path('app_famille_show', {'id': famille.id}) }}">
+                                        <img src="{{ famille.imageRep }}" alt="image de test" width="150";/> 
+                                    </a>
+                                </div>    
                             </div>
                         </div>
+
+                        <button class="btn-supprime">Supprimer</a>
+                        <button class="btn-modifie">Editer</a>
                     </div>
 
         {% endfor %}
@@ -61,6 +65,8 @@
             </ul>
         </tbody>
     </table>
+
+
 
     <a href="{{ path('app_famille_new') }}">Create new</a>
 {% endblock %}
