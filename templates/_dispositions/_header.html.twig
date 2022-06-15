@@ -33,13 +33,13 @@
 			</ul>
 
             {#  sous menu selon le menu (catalogue, commande, etc)  #}
-            <ul>
+
        {#  {% for Films in film %}
             <li> <button class="sousmenu" onclick="{{ path('app_film_show', {'id': film.numero}) }}" >{{ film.type }}</button>
           {% endfor %}   #}
+      {#   <a class="nav-link" href="{{ path('app_produit')}}"> produits </a> #}
            
-           
-            <button class="sousmenu" >READ MORE</button>
+            <button class="sousmenu">produits</button>
             <button class="sousmenu">READ MORE</button>
             <button class="sousmenu">READ MORE</button>
             <button class="sousmenu">READ MORE</button>

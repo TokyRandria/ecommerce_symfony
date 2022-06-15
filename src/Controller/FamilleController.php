@@ -17,15 +17,20 @@ class FamilleController extends AbstractController
 {
 
 
-    #[Route('/', name: 'app_famille_index', methods: ['GET'])]
-    public function index(FamilleRepository $familleRepository): Response
+
+    #[Route('/{id1}/{id2}', name: 'app_famille_index', methods: ['GET'])]
+    public function index(FamilleRepository $familleRepository, int $id1=0,int $id2=0): Response
     {
+        $famillesp = $familleRepository->famillePrime();
+        $famillese = $familleRepository ->familleenfant($id1);
+        $famillesdernieres = $familleRepository -> familleenfant($id2);
+
         return $this->render('famille/index.html.twig', [
-            'familles' => $familleRepository->findAll(),
+           'famillesp'=>$famillesp,
+            'famillese'=>$famillese,
+            'famillesdernieres'=>$famillesdernieres
         ]);
     }
-
-
 
     #[Route('/new', name: 'app_famille_new', methods: ['GET', 'POST'])]
     public function new(Request $request, FamilleRepository $familleRepository,ImageUploader $img_uploader,ContainerParametersHelper $pathHelpers): Response

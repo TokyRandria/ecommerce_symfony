@@ -15,54 +15,111 @@
                 <th>actions</th>
             </tr>
         </thead>
+
         <tbody>
-        
-        <div class="container-primaire">
-        {% for famille in familles %}
-          {#  {% if famille.parent == null %}   #}
-        
-            <tr>
-                <td>{{ famille.id }}</td>
-                <td>{{ famille.Libelle }}</td>
-                <td>{{ famille.imageRep }}</td>
-                <td>{{ famille.ordreAffichage }}</td>
-                <td>
-                    <a href="{{ path('app_famille_show', {'id': famille.id}) }}">show</a>
-                    <a href="{{ path('app_famille_edit', {'id': famille.id}) }}">edit</a>
-                </td>
-            </tr>
-            
 
 
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-
-
-        <h3> test card 2 </h3> 
-        <div class="famillezone">
-        {% for famille in familles %}
-                    <div class="famillecard">
-                        <div class="box">
-                            <div class="content">
-                                <h3>{{ famille.Libelle }} </h3>
-                                <div class="familleimage">
-                                    <a href="{{ path('app_famille_show', {'id': famille.id}) }}">
-                                        <img src="{{ famille.imageRep }}" alt="image de test" width="150";/> 
-                                    </a>
-                                </div>    
+        <div class="container">
+            <h4> Famille principale</h4>
+            <div class="row">
+                {% for famille in famillesp %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ famille.Libelle }}</h5>
+                            <a href="{{ path('app_famille_index', {'id1': famille.id}) }}">
+                                <img src="{{ famille.imageRep }}" alt="image de test" width="150";/>
+                            </a>
+                            </br>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">Modifier</button>
+                                <button type="button" class="btn btn-outline-primary">Supprimer</button>
                             </div>
                         </div>
-
-                        <button class="btn-supprime">Supprimer</a>
-                        <button class="btn-modifie">Editer</a>
                     </div>
-
-        {% endfor %}
+                </div>
+                {% endfor %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ajouter une famille</h5>
+                            <input class="form-control form-control-lg" type="text" placeholder="nom de la famille" aria-label=".form-control-lg example">
+                            <div class="mb-3">
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="confirmer">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-            </ul>
+
+        <div class="container">
+            <h4> Sous famille (niveau 1) : </h4>
+            <div class="row">
+                {% for famille in famillese %}
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ famille.Libelle }}</h5>
+                                <a href="{{ path('app_famille_index', {'id2': famille.id}) }}">
+                                    <img src="{{ famille.imageRep }}" alt="image de test" width="150";/>
+                                </a>
+                                </br>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-primary">Modifier</button>
+                                    <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ajouter famille </h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h4> Sous famille (niveau 2) : </h4>
+            <div class="row">
+                {% for famille in famillesdernieres %}
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ famille.Libelle }}</h5>
+
+                                    <img src="{{ famille.imageRep }}" alt="image de test" width="150";/>
+
+                                </br>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-primary">Modifier</button>
+                                    <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ajouter famille </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
         </tbody>
     </table>
 

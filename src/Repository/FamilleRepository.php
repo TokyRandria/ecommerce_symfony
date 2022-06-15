@@ -54,6 +54,27 @@ class FamilleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    /**
+     * @return Famille[] Returns an array of Famille objects
+     */
+    public function famillePrime(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.parent IS NULL')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function familleenfant($id): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.parent = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    public function findOneBySomeField($value): ?Famille
 //    {
 //        return $this->createQueryBuilder('f')

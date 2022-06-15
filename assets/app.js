@@ -37,3 +37,8 @@ const handleResponse = function (response) {
             break;
     }
 }
+
+// Treeview Initialization
+$(document).ready(function() {
+    $('.treeview-colorful').mdbTreeview();
+});
