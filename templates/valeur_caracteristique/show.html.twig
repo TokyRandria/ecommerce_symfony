@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValeurCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>ValeurCaracteristique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ valeur_caracteristique.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ valeur_caracteristique.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_valeur_caracteristique_index') }}">back to list</a>
+
+    <a href="{{ path('app_valeur_caracteristique_edit', {'id': valeur_caracteristique.id}) }}">edit</a>
+
+    {{ include('valeur_caracteristique/_delete_form.html.twig') }}
+{% endblock %}

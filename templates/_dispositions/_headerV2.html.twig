@@ -1,0 +1,54 @@
+<header>
+    <div
+            class="p-5 text-center bg-image"
+            style="
+      background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+      height: 400px;
+    "
+    >
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="text-white">
+                    <h3>Administration</h3>
+                    <h4 class="mb-3">APEMA gestion administrative</h4>
+                    <aside>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Bienvenue {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">se déconnecter</a>
+                        </div>
+                    {% endif %}
+                    </aside>
+                    <div class="user-log-info">
+
+                            {% if app.user %}
+                                    <a class="nav-link" href="#">Mon compte</a>
+                                    <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                            {% else %}
+                            <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a> </br>
+                                    <a class="nav-link" href="{{ path('app_login') }}">Me Connecter</a>
+                            {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col">
+                        <a href="#" class="btn btn-primary" aria-current="page">Familles/Catégories</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="btn btn-primary">Produits</a>
+                    </div><div class="col">
+                        <a href="{{ path('app_type_caracteristique_index') }}" class="btn btn-primary">Caractéristiques</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="btn btn-primary">Articles</a>
+                    </div><div class="col">
+                        <a href="{{ path('app_photo_article_index') }}" class="btn btn-primary">Photos pour articles </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- Background image -->
+</header>

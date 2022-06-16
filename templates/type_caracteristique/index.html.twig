@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeCaracteristique index{% endblock %}
+
+{% block body %}
+    <h1>TypeCaracteristique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Valeur_est_unique</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_caracteristique in type_caracteristiques %}
+            <tr>
+                <td>{{ type_caracteristique.id }}</td>
+                <td>{{ type_caracteristique.nom }}</td>
+                <td>{{ type_caracteristique.valeurEstUnique ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_type_caracteristique_show', {'id': type_caracteristique.id}) }}">show</a>
+                    <a href="{{ path('app_type_caracteristique_edit', {'id': type_caracteristique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('app_type_caracteristique_new') }}">Create new</a>
+    </br>
+
+    <a href="{{ path('app_valeur_caracteristique_index') }}">Gestion les valeurs des caractéristiques </a>
+{% endblock %}

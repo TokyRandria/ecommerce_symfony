@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhotoArticle index{% endblock %}
+
+{% block body %}
+    <h1>PhotoArticle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PhotoRep</th>
+                <th>Visuel</th>
+                <th>actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for photo_article in photo_articles %}
+            <tr>
+                <td>{{ photo_article.id }}</td>
+                <td>{{ photo_article.photoRep }}</td>
+                <td><img src="{{ photo_article.photoRep }}" class="rounded float-start" alt="article"
+                         width="100" height="100">
+                </td>
+                <td>
+                    <a href="{{ path('app_photo_article_show', {'id': photo_article.id}) }}">show</a>
+                    <a href="{{ path('app_photo_article_edit', {'id': photo_article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_photo_article_new') }}">Create new</a>
+{% endblock %}

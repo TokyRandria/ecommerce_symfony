@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ValeurCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>Edit ValeurCaracteristique</h1>
+
+    {{ include('valeur_caracteristique/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_valeur_caracteristique_index') }}">back to list</a>
+
+    {{ include('valeur_caracteristique/_delete_form.html.twig') }}
+{% endblock %}

@@ -33,4 +33,9 @@ class ImageUploader
     {
         return $this->targetDirectory;
     }
+    public function uploadArticleImage(UploadedFile $uploadedFile): string
+    {
+        $destination = $this->targetDirectory.'/article_image';
+    }
+
 }

@@ -18,7 +18,7 @@ class FamilleController extends AbstractController
 
 
 
-    #[Route('/{id1}/{id2}', name: 'app_famille_index', methods: ['GET'])]
+    #[Route('/home/{id1}/{id2}', name: 'app_famille_index', methods: ['GET'])]
     public function index(FamilleRepository $familleRepository, int $id1=0,int $id2=0): Response
     {
         $famillesp = $familleRepository->famillePrime();
@@ -47,11 +47,8 @@ class FamilleController extends AbstractController
                 if (null !== $image_name) // for example
                 {
                 $directory = $img_uploader->getTargetDirectory();
-                dd($directory);
-                dump($directory);
                 $directory = $pathHelpers->getApplicationRootDir();
-                dump($directory);
-                dd($directory);
+                $directory = $this->getParameter('kernel.project_dir');
                 $full_path = $directory.'/'.$image_name;
 
                 // Do what you want with the full path file...

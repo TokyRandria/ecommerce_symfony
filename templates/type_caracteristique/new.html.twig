@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>Create new TypeCaracteristique</h1>
+
+    {{ include('type_caracteristique/_form.html.twig') }}
+
+    <a href="{{ path('app_type_caracteristique_index') }}">back to list</a>
+{% endblock %}

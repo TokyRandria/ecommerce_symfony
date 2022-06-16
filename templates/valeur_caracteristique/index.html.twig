@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValeurCaracteristique index{% endblock %}
+
+{% block body %}
+    <h1>ValeurCaracteristique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for valeur_caracteristique in valeur_caracteristiques %}
+            <tr>
+                <td>{{ valeur_caracteristique.id }}</td>
+                <td>{{ valeur_caracteristique.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_valeur_caracteristique_show', {'id': valeur_caracteristique.id}) }}">show</a>
+                    <a href="{{ path('app_valeur_caracteristique_edit', {'id': valeur_caracteristique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_valeur_caracteristique_new') }}">Create new</a>
+{% endblock %}

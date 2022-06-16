@@ -10,22 +10,23 @@
     <table class="table">
         <thead>
             <tr>
-               <th> {}
                 <th>Id</th>
                 <th>reference</th>
                 <th>Libelle</th>
+                <th>repertoire</th>
                 <th>Ordre_affichage</th>
                 <th></th>
             </tr>
         </thead>
+
         <tbody>
-        
         <div class="container-primaire">
         {% for produit in produits %}
           {#  {% if produit.parent == null %}   #}
         
             <tr>
                 <td>{{ produit.id }}</td>
+                <td>{{ produit.reference }}</td>
                 <td>{{ produit.Libelle }}</td>
                 <td>{{ produit.imageRep }}</td>
                 <td>{{ produit.ordreAffichage }}</td>
@@ -46,5 +47,6 @@
       </div>
         </tbody>
     </table>
+    <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Create new</a>
     {% include "_dispositions/_familleArbre.html.twig" %}
 {% endblock %}

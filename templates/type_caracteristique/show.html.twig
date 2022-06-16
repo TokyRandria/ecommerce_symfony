@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>TypeCaracteristique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_caracteristique.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ type_caracteristique.nom }}</td>
+            </tr>
+            <tr>
+                <th>Valeur_est_unique</th>
+                <td>{{ type_caracteristique.valeurEstUnique ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_caracteristique_index') }}">back to list</a>
+
+    <a href="{{ path('app_type_caracteristique_edit', {'id': type_caracteristique.id}) }}">edit</a>
+
+    {{ include('type_caracteristique/_delete_form.html.twig') }}
+{% endblock %}

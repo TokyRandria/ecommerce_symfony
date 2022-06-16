@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PhotoArticle{% endblock %}
+
+{% block body %}
+    <h1>Create new PhotoArticle</h1>
+
+    {{ include('photo_article/_form.html.twig') }}
+
+    <a href="{{ path('app_photo_article_index') }}">back to list</a>
+{% endblock %}

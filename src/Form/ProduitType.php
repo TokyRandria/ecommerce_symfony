@@ -3,21 +3,31 @@
 namespace App\Form;
 
 use App\Entity\Produit;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Taxe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProduitType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options):void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('taxe', EntityType::class, [
-            'class' => Taxe::class,
-            'choice_label' => 'label',
-            'expanded' => true,
-            'label' => 'taux de taxe',
-            'multiple' => false
+            ->add('reference')
+            ->add('libelle')
+            ->add('description')
+            ->add('prix_reference')
+            ->add('ordre_affichage')
+            ->add('image_rep')
+            ->add('famille')
+           ->add('taxe')
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Produit::class,
         ]);
     }
-}    
+}
