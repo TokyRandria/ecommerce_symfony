@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -37,6 +39,14 @@ class Produit
 
     #[ORM\ManyToOne(targetEntity: Taxe::class)]
     private $taxe;
+
+    #[ORM\OneToMany(mappedBy: 'produitref', targetEntity: Article::class)]
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -140,5 +150,35 @@ class Produit
     }
     public function __toString(){
         return $this->libelle;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setProduitref($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getProduitref() === $this) {
+                $article->setProduitref(null);
+            }
+        }
+
+        return $this;
     }
 }

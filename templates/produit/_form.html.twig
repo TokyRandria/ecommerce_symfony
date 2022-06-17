@@ -1,17 +1,19 @@
 <div class="container">
+    {%  form_theme form 'foundation_5_layout.html.twig' %}
 {{ form_start(form) }}
-    <div class="my-custom-class-for-errors">
-        {{ form_errors(form) }}
-    </div>
-    <div class="row">
+    <div class="form-control">
         <div class="col">
             {{ form_row(form.libelle) }}
+            {{ form_row(form.reference) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.prix_reference) }}
+
+
+
         </div>
-        <div class="col" id="some-custom-id">
-            {{ form_row(form.famille) }}
-        </div>
-    </div>
+
     {{ form_widget(form) }}
+    </div>
 <button class="btn btn-info">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 

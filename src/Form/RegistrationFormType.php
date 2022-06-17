@@ -32,7 +32,27 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nom complet'
             ])
-            ->add('RGPDConsent', CheckboxType::class, [
+            ->add('numero_siret', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Numéro siret'
+            ])
+            ->add('adresse', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Adresse'
+            ])
+            ->add('nomEntreprise', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Nom de votre entreprise'
+            ])
+            ->add('RGPDConsent', CheckboxType::class, [ 'attr' => [
+                'class' => 'form-check-input'
+            ],
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -41,10 +61,9 @@ class RegistrationFormType extends AbstractType
                 ],'label' => 'En m\'inscrivant à ce site j\'accepte...'
                 ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+
+                'attr' => ['autocomplete' => 'new-password','class' => 'form-control'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -57,6 +76,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],'label' => 'Mot de passe'
             ])
+
         ;
     }
 

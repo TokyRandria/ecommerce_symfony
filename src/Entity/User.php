@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -28,6 +29,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 100)]
     private $name_complete;
+
+    #[ORM\Column(type: 'string', length: 255)]
+
+    #[Assert\Length(['min' => 9,'max' => 14,])]
+    private $numero_siret;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nom_entreprise;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $adresse;
+
+    #[ORM\Column(type: 'boolean')]
+    private $estValide;
 
     public function getId(): ?int
     {
@@ -126,6 +140,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNameComplete(string $name_complete): self
     {
         $this->name_complete = $name_complete;
+
+        return $this;
+    }
+
+    public function getNumeroSiret(): ?string
+    {
+        return $this->numero_siret;
+    }
+
+    public function setNumeroSiret(string $numero_siret): self
+    {
+        $this->numero_siret = $numero_siret;
+
+        return $this;
+    }
+
+    public function getNomEntreprise(): ?string
+    {
+        return $this->nom_entreprise;
+    }
+
+    public function setNomEntreprise(string $nom_entreprise): self
+    {
+        $this->nom_entreprise = $nom_entreprise;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function isEstValide(): ?bool
+    {
+        return $this->estValide;
+    }
+
+    public function setEstValide(bool $estValide): self
+    {
+        $this->estValide = $estValide;
 
         return $this;
     }

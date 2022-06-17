@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>Article index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>PrixHT</th>
+                <th>Quantite</th>
+                <th> attributs </th>
+                <th> image</th>
+
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.libelle }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.prixHT }}</td>
+                <td>{{ article.quantite }}</td>
+                <td>{% for valeur in article.valeurdeclinaison %}
+                {{ valeur }}
+                {% endfor %} </td>
+
+                <td>{% for rep in article.images %}
+                        <p>{{ rep }} </p>
+                       <img src="{{ rep }}" alt={{ articles.libelle~"photo1" }}>
+                {% endfor %}</td>
+
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_new') }}">Create new</a>
+{% endblock %}

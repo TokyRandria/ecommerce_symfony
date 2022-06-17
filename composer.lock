@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bf0cca3db82c708f0c501edd125b2f1",
+    "content-hash": "16eb439075a791441fc2cc47878324fd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2355,6 +2355,61 @@
                 "source": "https://github.com/sensiolabs/SensioFrameworkExtraBundle/tree/v6.2.6"
             },
             "time": "2022-01-14T11:51:13+00:00"
+        },
+        {
+            "name": "simondevelop/sirene",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SimonDevelop/sirene.git",
+                "reference": "ce87795842c010a6d9a6090d5843624454538721"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SimonDevelop/sirene/zipball/ce87795842c010a6d9a6090d5843624454538721",
+                "reference": "ce87795842c010a6d9a6090d5843624454538721",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.94",
+                "phpunit/phpunit": "^9.5.8",
+                "squizlabs/php_codesniffer": "4.0.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SimonDevelop\\": "src/",
+                    "SimonDevelop\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "SimonDevelop",
+                    "email": "contact@simon-micheneau.fr"
+                }
+            ],
+            "description": "Librairie facilitant l'utilisation de l'API sirene de l'insée",
+            "homepage": "https://github.com/SimonDevelop/sirene",
+            "keywords": [
+                "INSEE",
+                "Siren",
+                "Siret",
+                "api",
+                "sirene"
+            ],
+            "support": {
+                "issues": "https://github.com/SimonDevelop/sirene/issues",
+                "source": "https://github.com/SimonDevelop/sirene/tree/1.1.0"
+            },
+            "time": "2021-08-09T08:07:36+00:00"
         },
         {
             "name": "symfony/amqp-messenger",

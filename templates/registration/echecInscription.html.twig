@@ -1,0 +1,17 @@
+% extends 'base.html.twig' %}
+
+{% block title %}Inscription User{% endblock %}
+
+{% block body %}
+    <div class="con">
+        <header class="head-form">
+            <h2>Inscritpion</h2>
+        </header>
+       <p> Le numéro de Siret renseigné n'existe pas</p>
+
+
+        <button type="submit" class=".valider">s'inscrire</button>
+    </div>
+    {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

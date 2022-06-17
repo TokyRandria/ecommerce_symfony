@@ -43,21 +43,28 @@ class FamilleController extends AbstractController
             $image=$form['image_rep']->getData();
             if ($image)
             {
-                $image_name=$img_uploader->imgCharge($image);
-                if (null !== $image_name) // for example
-                {
-                $directory = $img_uploader->getTargetDirectory();
-                $directory = $pathHelpers->getApplicationRootDir();
-                $directory = $this->getParameter('kernel.project_dir');
-                $full_path = $directory.'/'.$image_name;
-
+               // $image_name=$img_uploader->imgCharge($image);
+             //   if (null !== $image_name) // for example
+             //   {
+//                $directory = $img_uploader->getTargetDirectory();
+//                $directory = $pathHelpers->getApplicationRootDir();
+//                $directory = $this->getParameter('kernel.project_dir');
+//                $full_path = $directory.'/'.$image_name;
+                    $destination = $this->getParameter('kernel.project_dir').'/public/uploads/familles';
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
+                    $image->move(
+                        $destination,
+                        $newFilename
+                    );
+                    $famille->setImageRep('/uploads/familles/'.$newFilename);
                 // Do what you want with the full path file...
-                $famille->setImageRep($full_path);
-                }
-                else
-                {
-                // Oups, an error occured !!!
-                }
+            //    $famille->setImageRep($full_path);
+             //   }
+//                else
+//                {
+//                // Oups, an error occured !!!
+//                }
             }
             $familleRepository->add($famille, true);
 

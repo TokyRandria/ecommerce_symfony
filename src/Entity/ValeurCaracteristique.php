@@ -29,6 +29,10 @@ class ValeurCaracteristique
     {
         $this->article = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 
     public function getId(): ?int
     {

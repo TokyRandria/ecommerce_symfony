@@ -16,6 +16,9 @@ class PhotoArticle
     #[ORM\Column(type: 'string', length: 255)]
     private $photoRep;
 
+    #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'images')]
+    private $article;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -31,5 +34,20 @@ class PhotoArticle
         $this->photoRep = $photoRep;
 
         return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+    public function __toString(){
+        return $this->photoRep;
     }
 }

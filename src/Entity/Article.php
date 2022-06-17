@@ -30,9 +30,17 @@ class Article
     #[ORM\Column(type: 'integer')]
     private $quantite;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: PhotoArticle::class)]
+    private $images;
+
+    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $produitref;
+
     public function __construct()
     {
         $this->valeurdeclinaison = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,6 +116,48 @@ class Article
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PhotoArticle>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(PhotoArticle $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(PhotoArticle $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getArticle() === $this) {
+                $image->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getProduitref(): ?Produit
+    {
+        return $this->produitref;
+    }
+
+    public function setProduitref(?Produit $produitref): self
+    {
+        $this->produitref = $produitref;
 
         return $this;
     }

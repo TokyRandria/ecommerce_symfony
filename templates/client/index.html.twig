@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients administration!{% endblock %}
+
+{% block body %}
+    <h1>Liste des clients</h1>
+
+    <h1>Client</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom complet</th>
+            <th>numero siret</th>
+            <th>Entreprise</th>
+            <th>adresse</th>
+            <th>validation</th>
+            <th> </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div class="container-primaire">
+            {% for client in clients %}
+                {#  {% if produit.parent == null %}   #}
+
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.nameComplete }}</td>
+                    <td>{{ client.numeroSiret }}</td>
+                    <td>{{ client.nomEntreprise}}</td>
+                    <td>{{ client.adresse }}</td>
+                    {% if client.estValide %}
+                    <td>  <p> est validé</p> </td>
+                    <td>   <a href="#"> Striker ce client </a></td>
+                        {% else %}
+                    <td>   <p> non validé</p>   </td>
+                    <td> <a href="{{ path('app_client_valid', {'id': client.id}) }}"> valider ce client</a></td>
+                        {% endif%}
+
+
+                    <td>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+        </div>
+        </tbody>
+    </table>
+{% endblock %}
