@@ -15,7 +15,9 @@ class TaxeType extends AbstractType
         $builder
             ->add('libelle')
             ->add('taux_taxe')
-            ->add('save', SubmitType::class)
+            ->add('save', SubmitType::class,[
+                'attr'=>['data-action'=>"click->hello#greet"]
+            ])
         ;
     }
 

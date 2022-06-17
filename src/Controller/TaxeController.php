@@ -15,31 +15,28 @@ use App\Service\TaxeService;
 #[Route('/taxe')]
 class TaxeController extends AbstractController
 {
-     #[Route('/', name: 'app_taxe_index', methods: ['GET','POST'])]
+   /*  #[Route('/', name: 'app_taxe_index', methods: ['GET','POST'])]
     public function index_backup(TaxeRepository $taxeRepository): Response
     {
         return $this->render('taxe/index.html.twig', [
             'taxes' => $taxeRepository->findAll(),
         ]);
-    } 
-   /*  #[Route('/', name: 'app_taxe_index', methods: ['GET','POST'])]
+    } */
+     #[Route('/', name: 'app_taxe_index', methods: ['GET','POST'])]
     public function index(RequestStack $requestStack,TaxeRepository $taxeRepository,TaxeService $taxeservice): Response
     {
         $taxe = new Taxe();
-        $request = $requestStack->getMainRequest(); 
-        $taxeForm = $this->createForm(TaxeType::class,$taxeRepository->add($taxe));
+        $request = $requestStack->getMainRequest();
+        $taxeForm = $this->createForm(TaxeType::class);
         $taxeForm->handleRequest($request);
 
-        if ($taxeForm->isSubmitted()) {
-            return $taxeservice->handleTaxeForm($taxeForm);
-        }
 
         return $this->render('taxe/index.html.twig', [
             'form' => $taxeForm->createView(),
             'taxes' => $taxeRepository->findAll(),
         ]);
     }
- */
+
     
 
     #[Route('/new', name: 'app_taxe_new', methods: ['GET', 'POST'])]
