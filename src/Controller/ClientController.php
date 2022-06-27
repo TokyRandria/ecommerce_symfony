@@ -22,7 +22,7 @@ class ClientController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_client_valid', methods: ['GET','POST'])]
-    public function validate(User $client,UserRepository $clientRepository ): Response
+    public function validate(User $client, UserRepository $clientRepository ): Response
     {
         $client->setEstValide(true);
         $clientRepository ->add($client,true);

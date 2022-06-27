@@ -37,10 +37,14 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private $produitref;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Promotion::class, orphanRemoval: true)]
+    private $promotions;
+
     public function __construct()
     {
         $this->valeurdeclinaison = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->promotions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,5 +164,39 @@ class Article
         $this->produitref = $produitref;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Promotion>
+     */
+    public function getPromotions(): Collection
+    {
+        return $this->promotions;
+    }
+
+    public function addPromotion(Promotion $promotion): self
+    {
+        if (!$this->promotions->contains($promotion)) {
+            $this->promotions[] = $promotion;
+            $promotion->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromotion(Promotion $promotion): self
+    {
+        if ($this->promotions->removeElement($promotion)) {
+            // set the owning side to null (unless already changed)
+            if ($promotion->getArticle() === $this) {
+                $promotion->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

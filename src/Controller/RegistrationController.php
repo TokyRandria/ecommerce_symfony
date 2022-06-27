@@ -30,33 +30,33 @@ class RegistrationController extends AbstractController
             "jwt_path" => __DIR__ // Chemin où sera stocké le token d'accès (fichier json)
         ]);
 
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $client = new User();
+        $form = $this->createForm(RegistrationFormType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $result = $sirene->siret($user->getNumeroSiret());
+            $result = $sirene->siret($client->getNumeroSiret());
             if ($result["header"]["statut"]==404){
                 return new Response("Aucun établissement trouvé avec ce siret");
             }
             if ($result["header"]["statut"]==400){
                 return new Response("Format de siret non valide");
             }
-            $user->setPassword(
+            $client->setPassword(
             $userPasswordHasher->hashPassword(
-                    $user,
+                    $client,
                     $form->get('plainPassword')->getData()
                 )
             );
-            $user->setEstValide(false);
+            $client->setEstValide(false);
 
-            $entityManager->persist($user);
+            $entityManager->persist($client);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
-                $user,
+                $client,
                 $authenticator,
                 $request
             );
