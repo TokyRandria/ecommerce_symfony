@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdresseRepere index{% endblock %}
+
+{% block body %}
+    <h1>AdresseRepere index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adresse_repere in adresse_reperes %}
+            <tr>
+                <td>{{ adresse_repere.id }}</td>
+                <td>{{ adresse_repere.adresse }}</td>
+                <td>{{ adresse_repere.longitude }}</td>
+                <td>{{ adresse_repere.latitude }}</td>
+                <td>
+                    <a href="{{ path('app_adresse_repere_show', {'id': adresse_repere.id}) }}">show</a>
+                    <a href="{{ path('app_adresse_repere_edit', {'id': adresse_repere.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_adresse_repere_new') }}">Create new</a>
+{% endblock %}

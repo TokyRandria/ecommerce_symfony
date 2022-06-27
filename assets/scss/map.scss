@@ -1,0 +1,8 @@
+// assets/scss/map.scss
+@import "~bootstrap";
+@import "~leaflet";
+@import "~@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css";
+
+#map {
+  height: 500px;
+}
