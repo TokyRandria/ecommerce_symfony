@@ -18,7 +18,7 @@ class FamilleController extends AbstractController
 
 
 
-    #[Route('/home/{id1}/{id2}', name: 'app_famille_index', methods: ['GET'])]
+    #[Route('/home/{id1}/{id2}', name: 'app_famille_index', methods: ['GET','POST'])]
     public function index(FamilleRepository $familleRepository, int $id1=0,int $id2=0): Response
     {
         $famillesp = $familleRepository->famillePrime();
@@ -103,7 +103,7 @@ class FamilleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_famille_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_famille_delete', methods: ['GET','POST'])]
     public function delete(Request $request, Famille $famille, FamilleRepository $familleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$famille->getId(), $request->request->get('_token'))) {

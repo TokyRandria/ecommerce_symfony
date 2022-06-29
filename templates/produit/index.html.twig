@@ -7,6 +7,24 @@
 
  <h1>Produit</h1>
 
+    <div class="container-fluid">
+        <form class="d-flex">
+           <div    class="input-group"
+            {{ stimulus_controller('search-preview', {
+                url: path('app_produit_index') }) }}>
+
+            <input name="q" value="{{ searchTerm }}"
+                    placeholder="Search products..."
+                    type="search" class="form-control"
+                    data-action="search-preview#onSearchInput">
+            rechercher</input>
+           </div>
+            <div class="search-preview"
+                 data-search-preview-target="result">
+            </div>
+        </form>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -22,9 +40,11 @@
 
         <tbody>
         <div class="container-primaire">
-        {% for produit in produits %}
-          {#  {% if produit.parent == null %}   #}
-        
+  {#
+
+            {% for produit in produits %}
+          {#  {% if produit.parent == null %}
+
             <tr>
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.reference }}</td>
@@ -37,7 +57,7 @@
                     <a href="#">edit</a>
                 </td>
             </tr>
-            
+
 
 
         {% else %}
@@ -46,9 +66,21 @@
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
+  #}
+            {% for result in resultats %}
+
+          <tr>
+            <td>{{ result.id }}</td>
+            <td>{{ result.reference }}</td>
+            <td>{{ result.Libelle }}</td>
+            <td>{{ result.imageRep }}</td>
+            <td>{{ result.famille }}</td>
+            <td>{{ result.ordreAffichage }}</td>
+            <td>
+          </tr>
+            {% endfor %}
       </div>
         </tbody>
     </table>
     <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Create new</a>
-    {% include "_dispositions/_familleArbre.html.twig" %}
 {% endblock %}

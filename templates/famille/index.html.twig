@@ -3,37 +3,60 @@
 {% block title %}Famille index{% endblock %}
 
 {% block body %}
+<div class="position-relative">
     <h1>Famille index</h1>
+    <div class="position-absolute top-0 end-0">
+        <button type="button" class="btn btn-primary"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+        </button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Création de famille</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Les familles ou catégories permettent de classer les produits. Tous les produits doivent appartenir à une famille.
+                        Vous pouvez ajouter 2 sous niveaux de famille. Un produit peut appartenir à une famille de n'importe quel niveau.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Image_rep</th>
-                <th>Ordre_affichage</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
 
 
         <div class="container">
             <h4> Famille principale</h4>
             <div class="row">
                 {% for famille in famillesp %}
-                <div class="col">
-                    <div class="card">
+                <div class="col ">
+                    <div class="card card-block">
                         <div class="card-body">
                             <h5 class="card-title">{{ famille.Libelle }}</h5>
                             <a href="{{ path('app_famille_index', {'id1': famille.id}) }}">
-                                <img src="{{ famille.imageRep }}" alt="image de test" width="150";/>
+                                <img src="{{ famille.imageRep }}"
+                                     alt="image de {{ famille.Libelle }}"
+                                     class="img-thumbnail"
+                                     style="width: 200px; height: 200px; object-fit: cover;"/>
                             </a>
                             </br>
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                 <button type="button" class="btn btn-outline-primary">Modifier</button>
-                                <button type="button" class="btn btn-outline-primary">Supprimer</button>
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ famille.id) }}">
+                                <a class="btn btn-outline-primary" href="{{ path('app_famille_delete', {'id': famille.id}) }}"
+                                   onclick="return confirm('Are you sure you want to delete this item?');"
+                                >Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -41,13 +64,13 @@
                 {% endfor %}
                 <div class="col">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" data-controller="familleedi">
                             <h5 class="card-title">Ajouter une famille</h5>
-                            <input class="form-control form-control-lg" type="text" placeholder="nom de la famille" aria-label=".form-control-lg example">
+                            <input class="form-control form-control-lg" data-familleedi-target="famille" type="text" placeholder="nom de la famille" aria-label=".form-control-lg example">
                             <div class="mb-3">
-                                <input class="form-control" type="file" id="formFile">
+                                <input class="form-control" data-familleedi-target="famille" type="file" id="formFile">
                             </div>
-                            <input class="btn btn-primary" type="submit" value="confirmer">
+                            <input class="btn btn-primary" data-action="click->familleedi#ajout" type="submit" value="confirmer">
                         </div>
                     </div>
                 </div>
@@ -115,13 +138,6 @@
             </div>
         </div>
 
-
-
-
-
-
-        </tbody>
-    </table>
 
 
 

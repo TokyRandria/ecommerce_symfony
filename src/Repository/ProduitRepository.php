@@ -48,6 +48,20 @@ class ProduitRepository extends ServiceEntityRepository
         return $produit;
     }
 
+    public function recherche(?string $term)
+    {
+        $qb = $this->createQueryBuilder('produit');
+
+        if ($term) {
+            $qb->andWhere('produit.reference LIKE :term OR produit.libelle LIKE :term')
+                ->setParameter('term', '%'.$term.'%');
+        }
+        return $qb
+            ->getQuery()
+            ->execute();
+    }
+
+
 
 //    /**
 //     * @return Produit[] Returns an array of Produit objects

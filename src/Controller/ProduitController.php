@@ -17,10 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitController extends AbstractController
 {
     #[Route('/', name: 'app_produit_index')]
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(ProduitRepository $produitRepository, Request $request): Response
     {
+        $searchTerm = $request->query->get('q');
+        $searchResult= $produitRepository->recherche($searchTerm);
+        dump($searchTerm);
+        if ($request->query->get('preview')) {
+            return $this->render('produit/_resultatRecherche.html.twig', [
+                'resultats' => $searchResult,
+            ]);
+        }
         return $this->render('produit/index.html.twig',[
-            'produits' => $produitRepository->findAll(),
+            'resultats'=>$searchResult,
+            'searchTerm' => $searchTerm,
+            //'produits' => $produitRepository->findAll(),
         ]);
     }
 

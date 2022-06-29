@@ -65,6 +65,13 @@ class FamilleRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function randomFamille(FamilleRepository $familleRepository)
+    {
+        $famille = $familleRepository->findOneBy([
+            'id'>0,
+        ]);
+        return $famille;
+    }
     public function familleenfant($id): array
     {
         return $this->createQueryBuilder('f')
