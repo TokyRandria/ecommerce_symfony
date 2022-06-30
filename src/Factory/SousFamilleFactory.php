@@ -28,7 +28,7 @@ use Faker;
  * @method static FamilleRepository|RepositoryProxy repository()
  * @method Famille|Proxy create(array|callable $attributes = [])
  */
-final class FamilleFactory extends ModelFactory
+final class SousFamilleFactory extends ModelFactory
 {
     public function __construct()
     {
@@ -65,8 +65,7 @@ final class FamilleFactory extends ModelFactory
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'Libelle' => self::faker()->word(),
             'image_rep' => self::faker()->imageUrl(300,300),
-            //'parent' => FamilleFactory::random(),
-            'parent' => null,
+            'parent' => FamilleFactory::random(),
         ];
     }
 

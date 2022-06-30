@@ -39,7 +39,7 @@ final class ProduitFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'reference' => self::faker()->word(),
+            'reference' => self::faker()->regexify('[A-Z]{3}[0-4]{4}'),
             'libelle' => self::faker()->word(),
             'image_rep' => self::faker()->imageUrl(100,100),
             'description' => self::faker()->text(),

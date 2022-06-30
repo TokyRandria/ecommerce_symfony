@@ -42,3 +42,4 @@ const handleResponse = function (response) {
 $(document).ready(function() {
     $('.treeview-colorful').mdbTreeview();
 });
+

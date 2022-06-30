@@ -58,13 +58,7 @@ class FamilleController extends AbstractController
                         $newFilename
                     );
                     $famille->setImageRep('/uploads/familles/'.$newFilename);
-                // Do what you want with the full path file...
-            //    $famille->setImageRep($full_path);
-             //   }
-//                else
-//                {
-//                // Oups, an error occured !!!
-//                }
+
             }
             $familleRepository->add($famille, true);
 

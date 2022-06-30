@@ -3,7 +3,13 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    <h1>Créer un nouvel article</h1>
+
+    <div class="p-3 mb-2 bg-info text-white">
+        <p> Tout article est issu d'un produit. Vous devez selectionner un produit pour créer un article</p>
+    </div>
+
+
 
     {{ include('article/_form.html.twig') }}
 

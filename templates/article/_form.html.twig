@@ -1,6 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
 
+<div class="my-custom-class-for-errors">
+    {{ form_errors(form) }}
+</div>
+
+<div class="row">
+    <div class="col">
+        {{ form_row(form.libelle)}}
+    </div>
+    <div class="col" id="some-custom-id">
+        {{ form_row(form.quantite) }}
+        {% for image in form.images %}
+      <img src="{{image}}" alt="image non disponible">
+
+        {% endfor %}
+
+    </div>
+</div>
 
 
     <button class="btn">{{ button_label|default('Save') }}</button>

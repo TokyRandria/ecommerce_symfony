@@ -1,5 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import Map from "../js/components/maps";
+
 /*
  * This is an example Stimulus controller!
  *
@@ -13,7 +14,6 @@ import Map from "../js/components/maps";
 export default class extends Controller {
     static targets = ["placeholder"]
     map= new Map();
-    map;
     connect() {
         console.log("hello stimulus map");
         import("leaflet").then(L => {

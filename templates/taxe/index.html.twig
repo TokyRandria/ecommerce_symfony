@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ taxe.id }}</td>
                 <td>{{ taxe.libelle }}</td>
-                <td>{{ taxe.tauxTaxe }}</td>
+                <td>{{ taxe.tauxTaxe }}%</td>
                 <td>
                     <a href="{{ path('app_taxe_show', {'id': taxe.id}) }}">show</a>
                     <a href="{{ path('app_taxe_edit', {'id': taxe.id}) }}">edit</a>

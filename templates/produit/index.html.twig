@@ -14,7 +14,7 @@
                 url: path('app_produit_index') }) }}>
 
             <input name="q" value="{{ searchTerm }}"
-                    placeholder="Search products..."
+                    placeholder="rechercher par nom ou référence"
                     type="search" class="form-control"
                     data-action="search-preview#onSearchInput">
             rechercher</input>
@@ -25,62 +25,53 @@
         </form>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>reference</th>
-                <th>Libelle</th>
-                <th>repertoire</th>
-                <th>famille</th>
-                <th>Ordre_affichage</th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-        <div class="container-primaire">
-  {#
-
-            {% for produit in produits %}
-          {#  {% if produit.parent == null %}
-
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.reference }}</td>
-                <td>{{ produit.Libelle }}</td>
-                <td>{{ produit.imageRep }}</td>
-                <td>{{ produit.famille }}</td>
-                <td>{{ produit.ordreAffichage }}</td>
-                <td>
-                    <a href="#">show</a>
-                    <a href="#">edit</a>
-                </td>
-            </tr>
-
-
-
-        {% else %}
-
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        {% for famille in famillesp %}
+        <button type="button" class="btn btn-secondary">{{ famille.libelle }}</button>
         {% endfor %}
-  #}
-            {% for result in resultats %}
+    </div>
 
-          <tr>
-            <td>{{ result.id }}</td>
-            <td>{{ result.reference }}</td>
-            <td>{{ result.Libelle }}</td>
-            <td>{{ result.imageRep }}</td>
-            <td>{{ result.famille }}</td>
-            <td>{{ result.ordreAffichage }}</td>
-            <td>
-          </tr>
-            {% endfor %}
-      </div>
-        </tbody>
-    </table>
-    <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Create new</a>
+    <div class="container my-5">
+        <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Créer un nouveau produit</a>
+    </div>
+<style type="text/css">
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+</style>
+
+    <div class="container-fluid">
+        {% for result in resultats %}
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="card">
+                    <div class="card-horizontal">
+                        <div class="img-square-wrapper">
+                            <img class="" src="{{ result.imageRep }}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{ result.Libelle }}</h4>
+                            <p class="font-weight-bold"> {{ result.reference }} </p>
+                            <p class="card-text"> {{ result.prixReference }} €  </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"> {{ result.description }}  </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="position-absolute top-50 end-0 ms-5 mb-10">
+                                <a href="#" class="btn btn-danger my-1">Supprimer</a>
+                                <a href="#" class="btn btn-primary my-1 ms-2 mr-2">Consulter</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">famille : {{ result.famille }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

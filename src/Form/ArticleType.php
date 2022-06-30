@@ -24,7 +24,8 @@ class ArticleType extends AbstractType
             ->add('produitref')
             ->add('images' ,EntityType::class,[
                 'class' => PhotoArticle::class,
-                'multiple' => true
+                'multiple' => true,
+                'placeholder' => "Choix des images",
     ])
 //            ->add('images', FileType::class,['image_property'=>'images'])
         ;

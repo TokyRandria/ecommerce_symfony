@@ -40,7 +40,7 @@ final class TaxeFactory extends ModelFactory
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'libelle' => self::faker()->firstName(),
-            'taux_taxe' => self::faker()->randomFloat(),
+            'taux_taxe' => self::faker()->randomFloat(2,1,99),
         ];
     }
 
